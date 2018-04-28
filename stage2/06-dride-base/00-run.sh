@@ -258,7 +258,7 @@ sudo chmod 0777 bin/main
 
 
 echo "======== raspivid =========="
-sudo apt-get install git -y
+sudo apt-get install git cmake -y
 cd /home/core
 sudo git clone https://github.com/dride/userland
 cd userland
