@@ -16,7 +16,7 @@ install -m 644 files/systemctl/led.service ${ROOTFS_DIR}/lib/systemd/system/led.
 install -m 644 files/systemctl/rtc.service ${ROOTFS_DIR}/lib/systemd/system/rtc.service
 
 # copy new raspivid
-# install -m 644 files/raspivid ${ROOTFS_DIR}/usr/bin/raspivid
+install -m 644 files/raspivid ${ROOTFS_DIR}/usr/bin/raspivid
 
 on_chroot << EOF
 
@@ -258,15 +258,6 @@ echo "core_freq=250" >> /boot/config.txt
 cd /home/core/modules/led
 sudo npm i
 sudo chmod 0777 bin/main
-
-
-echo "======== raspivid =========="
-sudo apt-get install git cmake -y
-cd /home/core
-sudo git clone https://github.com/dride/userland
-cd userland
-./buildme
-
 
 echo "========== Setup bluetooth  ============"
 sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev -y
