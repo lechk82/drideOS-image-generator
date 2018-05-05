@@ -208,6 +208,7 @@ sudo wget -c -O "core.zip" "https://s3.amazonaws.com/dride/releases/dride/latest
 sudo unzip "core.zip"
 sudo rm -R core.zip
 cd core
+sudo chmod 777 config.json
 
 echo "========== Create video path ==========="
 # create the video/content destination
