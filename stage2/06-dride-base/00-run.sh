@@ -234,6 +234,7 @@ sudo npm i --production
 
 # run npm install on modules/video
 cd /home/core/modules/video
+sudo chmod 0777 savedVideos.json
 sudo npm i --production
 
 echo "========== Add CronJobs  ============"
