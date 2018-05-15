@@ -104,7 +104,7 @@ sudo apt-get install python3-picamera
 echo "" >> /boot/config.txt
 echo "#enable piCaera" >> /boot/config.txt
 echo "start_x=1" >> /boot/config.txt
-echo "gpu_mem=128" >> /boot/config.txt
+echo "gpu_mem=144" >> /boot/config.txt
 echo "dtparam=spi=on" >> /boot/config.txt
 
 
