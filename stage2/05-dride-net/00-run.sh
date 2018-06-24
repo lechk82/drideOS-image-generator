@@ -21,7 +21,7 @@ EOF
 cat > /etc/hostapd/hostapd.conf <<EOF
 interface=wlan0
 hw_mode=g
-channel=10
+channel=6
 auth_algs=1
 wpa=2
 wpa_key_mgmt=WPA-PSK
