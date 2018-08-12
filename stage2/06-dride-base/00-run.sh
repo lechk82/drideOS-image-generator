@@ -96,9 +96,10 @@ if [ ${OS_TYPE} == "dride-plus" ]; then
 fi
 
 
-echo "========== Install picamera  ============"
-sudo apt-get install python3-picamera
-
+if [ ${OS_TYPE} == "dride-plus" ]; then
+	echo "========== Install picamera  ============"
+	sudo apt-get install python3-picamera
+fi
 
 # enable camera on raspi-config and allocate more ram to the GPU
 echo "" >> /boot/config.txt
