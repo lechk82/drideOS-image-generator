@@ -8,7 +8,7 @@ Environment=BLENO_DEVICE_NAME=dride
 Type=simple
 User=root
 ExecStart=/usr/bin/node /home/core/daemons/bluetooth/main.js
-Restart=on-failure
+Restart=always
 RestartSec=1
 
 [Install]

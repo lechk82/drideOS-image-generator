@@ -7,7 +7,7 @@ After=network.target
 Type=simple
 User=pi
 ExecStart=/opt/vc/bin/raspivid -t 0 -w 640 -h 480 -fps 25 -l -o tcp://0.0.0.0:3333
-Restart=on-failure
+Restart=always
 RestartSec=1
 
 [Install]

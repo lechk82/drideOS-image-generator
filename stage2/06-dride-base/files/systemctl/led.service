@@ -7,7 +7,7 @@ After=network.target
 Type=simple
 User=pi
 ExecStart=/home/core/modules/led/bin/main welcome
-Restart=on-failure
+Restart=always
 RestartSec=1
 
 [Install]

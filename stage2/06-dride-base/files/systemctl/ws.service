@@ -7,7 +7,7 @@ After=network.target
 Type=simple
 User=pi
 ExecStart=/usr/bin/node /home/core/dride-ws/server/app.js
-Restart=on-failure
+Restart=always
 RestartSec=1
 
 [Install]
