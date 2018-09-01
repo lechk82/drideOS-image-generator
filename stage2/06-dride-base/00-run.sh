@@ -15,9 +15,6 @@ install -m 644 files/systemctl/live.service ${ROOTFS_DIR}/lib/systemd/system/liv
 install -m 644 files/systemctl/led.service ${ROOTFS_DIR}/lib/systemd/system/led.service
 install -m 644 files/systemctl/rtc.service ${ROOTFS_DIR}/lib/systemd/system/rtc.service
 
-# # copy new raspivid
-# install -m 644 files/raspivid ${ROOTFS_DIR}/usr/bin/raspivid
-# install -m 755 files/raspivid ${ROOTFS_DIR}/opt/vc/bin/raspivid
 
 on_chroot << EOF
 
