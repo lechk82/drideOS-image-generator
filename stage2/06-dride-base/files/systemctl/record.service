@@ -8,8 +8,8 @@ Environment=NODE_PORT=3001
 Type=simple
 User=pi
 ExecStart=/usr/bin/node /home/core/modules/video/index.js
-Restart=always
-RestartSec=1
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

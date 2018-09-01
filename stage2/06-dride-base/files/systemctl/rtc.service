@@ -7,8 +7,8 @@ After=network.target
 Type=simple
 User=root
 ExecStart=/sbin/hwclock -s
-Restart=always
-RestartSec=1
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

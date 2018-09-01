@@ -8,8 +8,8 @@ Environment=BLENO_DEVICE_NAME=dride
 Type=simple
 User=root
 ExecStart=/usr/bin/node /home/core/daemons/bluetooth/main.js
-Restart=always
-RestartSec=1
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target
