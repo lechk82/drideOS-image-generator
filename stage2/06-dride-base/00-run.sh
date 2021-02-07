@@ -8,7 +8,7 @@
 install -m 755 files/etc_initd_dride-core ${ROOTFS_DIR}/etc/init.d/dride-core
 install -m 644 files/lib_udev_hwclock-set ${ROOTFS_DIR}/lib/udev/hwclock-set
 
-install -m 644 files/systemctl/ble.service ${ROOTFS_DIR}/lib/systemd/system/ble.service
+#install -m 644 files/systemctl/ble.service ${ROOTFS_DIR}/lib/systemd/system/ble.service
 install -m 644 files/systemctl/record.service ${ROOTFS_DIR}/lib/systemd/system/record.service
 install -m 644 files/systemctl/ws.service ${ROOTFS_DIR}/lib/systemd/system/ws.service
 install -m 644 files/systemctl/live.service ${ROOTFS_DIR}/lib/systemd/system/live.service
@@ -101,7 +101,7 @@ fi
 
 # enable camera on raspi-config and allocate more ram to the GPU
 echo "" >> /boot/config.txt
-echo "#enable piCaera" >> /boot/config.txt
+echo "#enable piCamera" >> /boot/config.txt
 echo "start_x=1" >> /boot/config.txt
 echo "gpu_mem=144" >> /boot/config.txt
 echo "dtparam=spi=on" >> /boot/config.txt
@@ -124,8 +124,8 @@ sudo systemctl enable ws
 # dride-core on startup
 sudo update-rc.d dride-core defaults
 sudo systemctl enable record
-sudo systemctl enable ble
-sudo systemctl enable led
+#sudo systemctl enable ble
+#sudo systemctl enable led
 sudo systemctl enable rtc
 
 if [ ${OS_TYPE} == "dride-plus" ]; then
@@ -177,17 +177,17 @@ echo "========== Setup RTC  ============"
 sudo apt-get install python-smbus i2c-tools -y
 
 # add to /boot/config.txt
-echo "dtoverlay=i2c-rtc,ds1307" >> /boot/config.txt
-echo "dtparam=i2c_arm=on" >> /boot/config.txt
+#echo "dtoverlay=i2c-rtc,ds1307" >> /boot/config.txt
+#echo "dtparam=i2c_arm=on" >> /boot/config.txt
 
 # add to /etc/modules
-echo "i2c-dev" >> /etc/modules
-echo "rtc-ds1307" >> /etc/modules
+#echo "i2c-dev" >> /etc/modules
+#echo "rtc-ds1307" >> /etc/modules
 
 
 # Remove hw-clock
-sudo apt-get -y remove fake-hwclock
-sudo update-rc.d -f fake-hwclock remove
+#sudo apt-get -y remove fake-hwclock
+#sudo update-rc.d -f fake-hwclock remove
 
 # we will sync the current date form the app using BLE
 # looks at /daemon/bluetooth/updateDate.js
@@ -196,8 +196,8 @@ sudo update-rc.d -f fake-hwclock remove
 echo "========== Setup Accelerometer  ============"
 # http://www.stuffaboutcode.com/2014/06/raspberry-pi-adxl345-accelerometer.html
 # enable i2c 0
-echo "# Accelerometer" >> /boot/config.txt
-echo "dtparam=i2c_vc=on" >> /boot/config.txt
+#echo "# Accelerometer" >> /boot/config.txt
+#echo "dtparam=i2c_vc=on" >> /boot/config.txt
 
 
 echo "========== Install Dride-core   ============"
@@ -242,30 +242,30 @@ echo "========== Add CronJobs  ============"
 sudo crontab -l > cronJobs
 
 # setup cleaner cron job
-sudo echo "* * * * * sudo node /home/core/modules/video/helpers/cleaner.js" >> cronJobs
+echo "* * * * * sudo node /home/core/modules/video/helpers/cleaner.js" | sudo tee -a cronJobs
 
 # setup ensureAllClipsAreDecoded cron job
-sudo echo "* * * * * sudo node /home/core/modules/video/helpers/ensureAllClipsAreDecoded.js" >> cronJobs
+echo "* * * * * sudo node /home/core/modules/video/helpers/ensureAllClipsAreDecoded.js" | sudo tee -a cronJobs
 
 sudo crontab cronJobs
 sudo rm cronJobs
 
 
 
-echo "========== Install LED  ============"
-sudo apt-get install scons -y
-echo "# Needed for SPI LED" >> /boot/config.txt
-echo "core_freq=250" >> /boot/config.txt
+#echo "========== Install LED  ============"
+#sudo apt-get install scons -y
+#echo "# Needed for SPI LED" >> /boot/config.txt
+#echo "core_freq=250" >> /boot/config.txt
 
 cd /home/core/modules/led
 sudo npm i
 sudo chmod 0777 bin/main
 
-echo "========== Setup bluetooth  ============"
-sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev -y
-# run npm install on Bluetooth daemon
-cd /home/core/daemons/bluetooth
-sudo npm i --production
+#echo "========== Setup bluetooth  ============"
+#sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev -y
+## run npm install on Bluetooth daemon
+#cd /home/core/daemons/bluetooth
+#sudo npm i --production
 
 
 echo ""
