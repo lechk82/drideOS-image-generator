@@ -16,7 +16,7 @@ install -m 644 files/systemctl/led.service ${ROOTFS_DIR}/lib/systemd/system/led.
 install -m 644 files/systemctl/rtc.service ${ROOTFS_DIR}/lib/systemd/system/rtc.service
 
 
-on_chroot << EOF
+#on_chroot << EOF
 
 #-------------------------------------------------------
 # Script to check if all is good before install script runs
@@ -76,7 +76,7 @@ sudo apt-get install htop -y
 
 echo "========== Setup libav  ============"
 # provides avconv
-sudo apt-get install libav-tools -y
+sudo apt-get install ffmpeg -y
 
 
 echo "========== Installing Node ============"
