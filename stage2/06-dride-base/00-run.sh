@@ -77,6 +77,7 @@ sudo apt-get install htop -y
 echo "========== Setup libav  ============"
 # provides avconv
 sudo apt-get install ffmpeg -y
+sudo ln -s /usr/bin/ffmpeg /usr/bin/avconv
 
 
 echo "========== Installing Node ============"
