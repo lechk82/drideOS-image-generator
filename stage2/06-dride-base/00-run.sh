@@ -208,7 +208,7 @@ sudo wget -c -O "core.zip" "https://s3.amazonaws.com/dride/releases/dride/latest
 sudo unzip "core.zip"
 sudo rm -R core.zip
 cd core
-echo '{"name":"drideOS","version":"1.0.0","settings":{"debug":false,"videoRecord":true,"flipVideo":true,"gps":false,"speaker":false,"mic":false,"indicator":false,"resolution":"1080","fps":"25","clipLength":"1","gSensorSensitivity":"medium","netwrok":{"ssid":"dashcam","password":"dashcam"},"netwrokPassword":"dashcam","netwrokSSID":"dashcam"}}' | sudo tee -a /home/core/config.json
+echo '{"name":"drideOS","version":"1.0.0","settings":{"debug":false,"videoRecord":true,"flipVideo":true,"gps":false,"speaker":false,"mic":false,"indicator":false,"resolution":"1080","fps":"25","clipLength":"1","gSensorSensitivity":"medium","netwrok":{"ssid":"dashcam","password":"dashcam"}}}' | sudo tee -a /home/core/config.json
 sudo chmod 777 config.json
 
 echo "========== Create video path ==========="
