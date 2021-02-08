@@ -15,6 +15,7 @@ install -m 644 files/systemctl/live.service ${ROOTFS_DIR}/lib/systemd/system/liv
 #install -m 644 files/systemctl/led.service ${ROOTFS_DIR}/lib/systemd/system/led.service
 install -m 644 files/systemctl/rtc.service ${ROOTFS_DIR}/lib/systemd/system/rtc.service
 
+install -m 644 files/systemctl/fbcp-ili9341.service ${ROOTFS_DIR}/lib/systemd/system/fbcp-ili9341.service
 
 #on_chroot << EOF
 
@@ -124,6 +125,7 @@ sudo systemctl enable ws
 # dride-core on startup
 sudo update-rc.d dride-core defaults
 sudo systemctl enable record
+sudo systemctl enable fbcp-ili9341
 #sudo systemctl enable ble
 #sudo systemctl enable led
 #sudo systemctl enable rtc
