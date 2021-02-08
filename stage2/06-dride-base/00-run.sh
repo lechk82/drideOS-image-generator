@@ -125,7 +125,6 @@ sudo systemctl enable ws
 # dride-core on startup
 sudo update-rc.d dride-core defaults
 sudo systemctl enable record
-sudo systemctl enable fbcp-ili9341
 #sudo systemctl enable ble
 #sudo systemctl enable led
 #sudo systemctl enable rtc
@@ -252,7 +251,19 @@ echo "* * * * * sudo node /home/core/modules/video/helpers/ensureAllClipsAreDeco
 sudo crontab cronJobs
 sudo rm cronJobs
 
+echo "========== Install Display  ============"
 
+sudo apt-get install cmake
+cd ~
+git clone https://github.com/juj/fbcp-ili9341.git
+cd fbcp-ili9341
+sed -i '/#define DISPLAY_SPI_DRIVE_SETTINGS (0)/c\#define DISPLAY_SPI_DRIVE_SETTINGS (1 | BCM2835_SPI0_CS_CPOL | BCM2835_SPI0_CS_CPHA)' display.h
+mkdir build
+cd build
+cmake -DST7789=ON -DBACKLIGHT_CONTROL=ON -DGPIO_TFT_DATA_CONTROL=25 -DGPIO_TFT_RESET_PIN=24 -DGPIO_TFT_BACKLIGHT=23 -DSPI_BUS_CLOCK_DIVISOR=12 -DSTATISTICS=1 ..
+make -j
+cd ~
+sudo systemctl enable fbcp-ili9341
 
 #echo "========== Install LED  ============"
 #sudo apt-get install scons -y
