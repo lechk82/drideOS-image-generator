@@ -255,7 +255,7 @@ sudo rm cronJobs
 
 echo "========== Install Display  ============"
 
-sudo apt-get install cmake
+sudo apt-get install cmake -y
 cd ~
 git clone https://github.com/juj/fbcp-ili9341.git
 cd fbcp-ili9341
