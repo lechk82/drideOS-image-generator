@@ -194,7 +194,7 @@ sudo apt-get install python-smbus i2c-tools -y
 # looks at /daemon/bluetooth/updateDate.js
 
 
-echo "========== Setup Accelerometer  ============"
+#echo "========== Setup Accelerometer  ============"
 # http://www.stuffaboutcode.com/2014/06/raspberry-pi-adxl345-accelerometer.html
 # enable i2c 0
 #echo "# Accelerometer" >> /boot/config.txt
@@ -208,6 +208,7 @@ sudo wget -c -O "core.zip" "https://s3.amazonaws.com/dride/releases/dride/latest
 sudo unzip "core.zip"
 sudo rm -R core.zip
 cd core
+echo '{"name":"drideOS","version":"1.0.0","settings":{"debug":false,"videoRecord":true,"flipVideo":true,"gps":false,"speaker":false,"mic":false,"indicator":false,"resolution":"1080","fps":"25","clipLength":"1","gSensorSensitivity":"medium","netwrok":{"ssid":"dashcam","password":"dashcam"},"netwrokPassword":"dashcam","netwrokSSID":"dashcam"}}' | sudo tee -a /home/core/config.json
 sudo chmod 777 config.json
 
 echo "========== Create video path ==========="
@@ -240,6 +241,7 @@ sudo npm i --production
 echo "========== Add CronJobs  ============"
 
 # setup clear cron job
+sudo touch /var/spool/cron/crontabs/root
 sudo crontab -l > cronJobs
 
 # setup cleaner cron job
@@ -270,9 +272,9 @@ sudo systemctl enable fbcp-ili9341
 #echo "# Needed for SPI LED" >> /boot/config.txt
 #echo "core_freq=250" >> /boot/config.txt
 
-cd /home/core/modules/led
-sudo npm i
-sudo chmod 0777 bin/main
+#cd /home/core/modules/led
+#sudo npm i
+#sudo chmod 0777 bin/main
 
 #echo "========== Setup bluetooth  ============"
 #sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev -y
